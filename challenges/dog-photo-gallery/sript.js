@@ -1,3 +1,8 @@
+let button=document.getElementById('add picture')
+button.addEventListener('click',getfetch)
+ let ulEl=document.getElementById('list')
+//Retrieve the JSON
+function getfetch(){
 fetch("https://dog.ceo/api/breeds/image/random")
   // Get the response and extract the JSON
   .then(function (response) {
@@ -5,26 +10,18 @@ fetch("https://dog.ceo/api/breeds/image/random")
   })
   // Do something with the JSON
   .then((response) => {
-    makePageDogGallery(response.message);
+    showDogimage(response.message);
   })
   // If something goes wrong
   .catch((error) => console.log(error));
-
-
-
-function makePageDogGallery(item){
-    let button1=document.querySelector("#button1");
-    let button2=document.querySelector("#button2");
-    let div=document.querySelector("#container");
-    let ul=document.querySelector("#ul-list")
-    button1.addEventListener("click",function(){
-        let liEl=document.createElement("li")
-        ul.innerHTML=""
-        ul.appendChild(liEl)
-        let image=document.createElement("img")
-        liEl.appendChild(image)
-        image.src=item
-
-    })
-    
 }
+
+  function showDogimage(item){
+    let body=document.getElementById('container')
+      let liEl=document.createElement('li')
+      let image=document.createElement('img')
+      ulEl.innerText=''
+      ulEl.appendChild(liEl)
+      liEl.appendChild(image)
+      image.src=item
+  }
